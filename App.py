@@ -7,13 +7,12 @@ st.title('Selling Price Prediction App')
 st.header('Fill the details to generate the Selling Price')
 
 year = st.slider('year', 1992, 2017)
-km_driven = st.slider('km_driven', -1.455639e+00, 1.549921e+01)
-fuel = st.selectbox('fuel', ['Male', 'Female'])
+km_driven = st.slider('km_driven', 1.000000, 806599.000000)
+fuel = st.selectbox('fuel', ['Diesel', 'Petrol', 'CNG', 'LPG', 'Electric'])
+seller_type = st.selectbox('seller_type', ['Individual', 'Dealer', 'Trustmark Dealer'])
+transmission = st.transmission('transmission', ['Manual', 'Automatic'])
+owner = st.owner('owner', ['First Owner', 'Second Owner', 'Third Owner', 'Fourth & Above Owner', 'Test Drive Car'])
 
-bmi = st.slider('BMI', 15, 53)
-children = st.selectbox('Children', [0, 1, 2, 3, 4, 5])
-smoker = st.selectbox('Smoker', ['Yes', 'No'])
-region = st.selectbox('Region', ['NWest', 'SEast', 'SWest', 'NEast'])
 if st.button('Predict'):
     if sex == 'Male':
         sex = 1
@@ -31,11 +30,9 @@ if st.button('Predict'):
         region = 2
     else:
         region = 3
-    test = np.array([age, sex, bmi, children, smoker, region])
+        
+    test = np.array([year, km_driven, fuel, seller_type, transmission, owner])
     test = test.reshape(1, 6)
-    if options == 'Lin_Reg':
-        st.success(lr1.predict(test)[0])
-    elif options == 'Decision_Tree':
-        st.success(dt1.predict(test)[0])
-    else:
-        st.success(rf1.predict(test)[0])
+    
+    
+        st.success(model.predict(test)[0])
