@@ -10,26 +10,43 @@ year = st.slider('year', 1992, 2017)
 km_driven = st.slider('km_driven', 1.000000, 806599.000000)
 fuel = st.selectbox('fuel', ['Diesel', 'Petrol', 'CNG', 'LPG', 'Electric'])
 seller_type = st.selectbox('seller_type', ['Individual', 'Dealer', 'Trustmark Dealer'])
-transmission = st.transmission('transmission', ['Manual', 'Automatic'])
-owner = st.owner('owner', ['First Owner', 'Second Owner', 'Third Owner', 'Fourth & Above Owner', 'Test Drive Car'])
+transmission = st.selectbox('transmission', ['Manual', 'Automatic'])
+owner = st.selectbox('owner', ['First Owner', 'Second Owner', 'Third Owner', 'Fourth & Above Owner', 'Test Drive Car'])
 
 if st.button('Predict'):
-    if sex == 'Male':
-        sex = 1
+    if fuel == 'Diesel':
+        fuel = 1
+    elif fuel == 'Petrol':
+        fuel = 4
+    elif fuel == 'CNG':
+        fuel = 0
+    elif fuel == 'LPG':
+        fuel = 3
     else:
-        sex = 0
-    if smoker == 'Yes':
-        smoker = 1
+        fuel = 2
+    
+    if seller_type == 'Individual':
+        seller_type = 1
+    elif seller_type == 'Dealer':
+        seller_type = 0
     else:
-        smoker = 0
-    if region == 'NWest':
-        region = 1
-    elif region == 'NEast':
-        region = 0
-    elif region == 'SEast':
-        region = 2
+        seller_type = 2
+    
+    if transmission == 'Manual':
+        transmission = 1
     else:
-        region = 3
+        transmission = 0
+
+    if owner == 'First Owner':
+        owner = 0
+    elif owner == 'Second Owner':
+        owner = 2
+    elif owner == 'Third Owner':
+        owner = 4
+    elif owner == 'Fourth & Above Owner':
+        owner = 1
+    else:
+        owner = 3
         
     test = np.array([year, km_driven, fuel, seller_type, transmission, owner])
     test = test.reshape(1, 6)
