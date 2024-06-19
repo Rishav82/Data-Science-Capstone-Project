@@ -12,6 +12,8 @@ fuel = st.selectbox('fuel', ['Diesel', 'Petrol', 'CNG', 'LPG', 'Electric'])
 seller_type = st.selectbox('seller_type', ['Individual', 'Dealer', 'Trustmark Dealer'])
 transmission = st.selectbox('transmission', ['Manual', 'Automatic'])
 owner = st.selectbox('owner', ['First Owner', 'Second Owner', 'Third Owner', 'Fourth & Above Owner', 'Test Drive Car'])
+brand = st.selectbox('brand', ['Maruti', 'Hyundai', 'Mahindra', 'Tata', 'Ford', 'Honda', 'Toyota', 'Chevrolet', 'Renault', 'Volkswagen', 'Nissan', 'Skoda', 'Others',
+                               'Fiat', 'Audi', 'Datsun', 'BMW', 'Mercedes-Benz'])
 
 if st.button('Predict'):
     if fuel == 'Diesel':
@@ -48,8 +50,45 @@ if st.button('Predict'):
     else:
         owner = 3
         
-    test = np.array([year, km_driven, fuel, seller_type, transmission, owner])
-    test = test.reshape(1, 6)
+    if brand == 'Maruti':
+        brand = 9.0
+    elif brand == 'Hyundai':
+        brand = 7.0
+    elif brand == 'Mahindra':
+        brand = 8.0
+    elif brand == 'Tata':
+        brand = 15.0
+    elif brand == 'Ford':
+        brand = 5.0
+    elif brand == 'Honda':
+        brand = 6.0
+    elif brand == 'Toyota':
+        brand = 16.0
+    elif brand == 'Chevrolet':
+        brand = 2.0
+    elif brand == 'Renault':
+        brand = 13.0
+    elif brand == 'Volkswagen':
+        brand = 17.0
+    elif brand == 'Nissan':
+        brand = 11.0
+    elif brand == 'Skoda':
+        brand = 14.0
+    elif brand == 'Others':
+        brand = 12.0
+    elif brand == 'Fiat':
+        brand = 4.0
+    elif brand == 'Audi':
+        brand = 0.0
+    elif brand == 'Datsun':
+        brand = 3.0
+    elif brand == 'BMW':
+        brand = 1.0
+    else:
+        brand = 10.0  
+
+    test = np.array([year, km_driven, fuel, seller_type, transmission, owner, brand])
+    test = test.reshape(1, -1)
 
 
     prediction = model.predict(test)[0]
