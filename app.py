@@ -50,4 +50,9 @@ if st.button('Predict'):
         
     test = np.array([year, km_driven, fuel, seller_type, transmission, owner])
     test = test.reshape(1, 6)
-    st.success(model.predict(test)[0])
+
+
+    prediction = model.predict(test)[0]
+
+    # Display the result
+    st.success(f'Predicted Price: {prediction}')
