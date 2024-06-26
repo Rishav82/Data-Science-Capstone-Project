@@ -139,4 +139,5 @@ if streamlit.button('Predict Selling Price of Cars'):
 
     test = pd.DataFrame(user_input, [0])
 
-    streamlit.success(f'Selling Price of Car : {round(model.predict(test)[0], 2)}')
+    prediction = model.predict(test)[0]
+    streamlit.success(f'Predicted Price: {prediction}')
