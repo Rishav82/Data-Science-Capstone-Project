@@ -2,7 +2,7 @@ import streamlit as st
 import pickle
 import numpy as np
 import pandas
-model = pickle.load(open("model.pkl", "rb"))
+model = pickle.load(open("best_model.pkl", "rb"))
 st.title('Selling Price Prediction App')
 st.header('Fill the details to generate the Selling Price')
 
