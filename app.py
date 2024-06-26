@@ -1,8 +1,8 @@
 import streamlit as st
-import joblib
+import pickle
 import numpy as np
 import pandas
-model = joblib.load(open("best_model.joblib", "rb"))
+model = pickle.load(open("best_model.pickle", "rb"))
 st.title('Selling Price Prediction App')
 st.header('Fill the details to generate the Selling Price')
 
